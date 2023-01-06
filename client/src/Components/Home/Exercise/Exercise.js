@@ -7,7 +7,7 @@ import image3 from '../../../assets/exercise3.jpg';
 import image4 from '../../../assets/exercise4.jpg';
 import image5 from '../../../assets/exercise5.jpg';
 import image6 from '../../../assets/exercise6.jpg';
-import './Exercise.css'
+
 
 const Exercise = () => {
     const [activityCart, setActivityCart] = useState([]);
@@ -55,8 +55,8 @@ const Exercise = () => {
         setActivityCart(newActivityCart);
     }
     return (
-        <div className=' exercise'>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 p-10 lg:mt-[120px]'>
+        <div className='grid grid-cols-1 lg:grid-cols-3'>
+            <div className='grid grid-cols-1 col-span-2 md:grid-cols-2 lg:grid-cols-3 gap-5 p-10 '>
                 {exercises.map(exercise => <ExerciseCard
                     key={exercise.id}
                     exercise={exercise}

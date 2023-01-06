@@ -60,44 +60,68 @@ const Login = () => {
     }
 
     return (
-        <section className='my-24 block lg:flex justify-between lg:mx-16'>
-            <div className='md:w-full lg:w-1/2 mb-16 lg:mb-0'>
-                <img className='md:mx-auto lg:mx-0' src={loginImage} alt="" />
+      <section className="my-10 lg:flex justify-between lg:mx-10 flex items-center">
+        <div className="md:w-full lg:w-1/2 mb-16 lg:mb-0">
+          <img className="md:mx-auto lg:mx-0" src={loginImage} alt="" />
+        </div>
+        <div className="md:w-full lg:w-[500px] lg:h-[400px] shadow-xl  border px-[29px] py-[30px] mx-auto lg:mx-0">
+          <h2 className="text-2xl text-center text-white font-semibold tracking-wider">
+            Login
+          </h2>
+          <form onSubmit={handleSubmit(handleLogin)}>
+            <div className="flex flex-col gap-[1px]">
+              <label className="label">Email</label>
+              <input
+                type="email"
+                {...register("email", {
+                  required: "Email Address is required",
+                })}
+                className="input"
+              />
+              {errors.email && (
+                <p role="alert" className="text-red-500 text-sm">
+                  {errors.email?.message}
+                </p>
+              )}
             </div>
-            <div className='md:w-full lg:w-[400px] lg:h-[400px] shadow-xl  border px-[29px] py-[30px] mx-auto lg:mx-0 mt-40'>
-                <h2 className='text-xl text-center text-black'>Login</h2>
 
-                <form onSubmit={handleSubmit(handleLogin)}>
-                    <div className="form-control w-full ">
-                        <label className="label"><span className="label-text text-black">Email</span>
-                        </label>
-                        <input type="email" {...register("email", { required: "Email Address is required" })} className="input input-bordered w-full  text-black" />
-                        {errors.email && <p role="alert" className='text-red-700'>{errors.email?.message}</p>}
-                    </div>
-
-                    <div className="form-control w-full ">
-                        <label className="label"><span className="label-text text-black">Password</span>
-                        </label>
-                        <input type="password" {...register("password", {
-                            required: 'Password is required',
-                            minLength: { value: 6, message: 'Password must be 6 characters or longer' }
-                        })} className="input input-bordered w-full  text-black" />
-                        {errors.password && <p role="alert" className='text-red-700'>{errors.password?.message}</p>}
-                    </div>
-
-
-
-                    <button className="btn btn-success text-white w-full mt-5 mb-[11px]">Login</button>
-                    <div>
-                        {
-                            loginError && <p className='text-red-700 mb-5'>{loginError}</p>
-                        }
-                    </div>
-                    <p className='text-black'>New to Fitness Center? <span className='text-success'><Link to='/register'>Create new account</Link></span></p>
-
-                </form>
+            <div className="flex flex-col gap-[1px]">
+              <label className="label">Password</label>
+              <input
+                type="password"
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 6,
+                    message: "Password must be 6 characters or longer",
+                  },
+                })}
+                className="input"
+              />
+              {errors.password && (
+                <p role="alert" className="text-red-500 text-sm">
+                  {errors.password?.message}
+                </p>
+              )}
             </div>
-        </section>
+
+            <button className="btn btn-success text-white w-full mt-5 mb-[11px]">
+              Login
+            </button>
+            <div>
+              {loginError && (
+                <p className="text-red-500 text-sm">{loginError}</p>
+              )}
+            </div>
+            <p className="text-gray-400 text-center">
+              New to Fitness Center?{" "}
+              <span className="text-success">
+                <Link to="/register">Create new account</Link>
+              </span>
+            </p>
+          </form>
+        </div>
+      </section>
     );
 };
 
